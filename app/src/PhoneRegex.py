@@ -10,15 +10,14 @@ Parse a phone number from a given line
 def parse_phone_number(string_to_parse):
     phone_regex_pattern = r'([\(]?[0-9]{3,3}[\)]?)?[-]?[0-9]{3,3}[-]?[0-9]{4,4}'
     match = re.search(phone_regex_pattern, string_to_parse)
-
     if match is None:
         return ''
-    return match.group()
+    return str(match.group())
 
 
 '''
 Returns a phone number formatted
-with only numbers and hyphens
+with only numbers
 '''
 
 

@@ -9,8 +9,8 @@
 # formatted
 # ie. John Doe, 55555555
 #
-import random
 from os import path
+import random
 
 LOC_OF_FIRST_NAME_FILE = path.abspath(__file__ + '/../../../data/names.txt')
 LOC_OF_LAST_NAME_FILE = path.abspath(__file__ + '/../../../data/last_names.txt')
@@ -25,7 +25,23 @@ class CustomerInfo(object):
         return 'Customer: ' + str(self.full_name) + ' ' + str(self.phone_num)
 
 
-# end_CustomerInfo
+'''
+Creates a file with the provided name. The file
+will contain @param row_count customer entries
+
+ie. John Doe 555-5555
+
+'''
+
+
+def create_file_of_mock_data(file_name, row_count):
+    customer_list = get_list_of_mock_customer_info(row_count);
+    my_file = open(file_name, "w+")
+    for customer in customer_list:
+        my_file.write("%s\n" % customer)
+    my_file.close()
+    return my_file
+
 
 def get_list_of_mock_customer_info(customer_amount):
     customer_info_list = []
@@ -64,8 +80,3 @@ def get_random_phone_number():
     rand_num = str(random.randint(10 ** 6, 10 ** 7 - 1))
     rand_num = rand_num[:3] + dash + rand_num[3:]
     return rand_num
-
-
-customer_list = get_list_of_mock_customer_info(10)
-print customer_list
-
